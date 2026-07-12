@@ -7,19 +7,21 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        orbitron: ['Orbitron', 'sans-serif'],
+        pixel: ['GeistPixelSquare', 'monospace'],
+        'pixel-grid': ['GeistPixelGrid', 'monospace'],
+        'pixel-circle': ['GeistPixelCircle', 'monospace'],
+        'pixel-tri': ['GeistPixelTriangle', 'monospace'],
+        'pixel-line': ['GeistPixelLine', 'monospace'],
+        mono: ['Space Mono', 'ui-monospace', 'monospace'],
         inter: ['Inter', 'sans-serif'],
       },
       colors: {
-        neon: {
-          cyan: '#00F0FF',
-          purple: '#B026FF',
-          pink: '#FF006E',
-          yellow: '#FFD60A',
-          green: '#00FF88',
-          blue: '#0066FF',
-        }
-      }
+        surface: {
+          DEFAULT: '#0B0D0E',
+          raised: '#111315',
+          overlay: '#1A1C1E',
+        },
+      },
     },
   },
   plugins: [],

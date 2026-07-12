@@ -1,236 +1,285 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ═══════════════════════════════════════════════════════
+   Geist Pixel Fonts — loaded locally for Vite
+   ═══════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'GeistPixelSquare';
+  src: url('./fonts/geist-pixel/GeistPixel-Square.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GeistPixelGrid';
+  src: url('./fonts/geist-pixel/GeistPixel-Grid.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GeistPixelCircle';
+  src: url('./fonts/geist-pixel/GeistPixel-Circle.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GeistPixelTriangle';
+  src: url('./fonts/geist-pixel/GeistPixel-Triangle.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GeistPixelLine';
+  src: url('./fonts/geist-pixel/GeistPixel-Line.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================
-   VS CODE THEME - Portfolio
-   ============================================ */
-
 :root {
-  /* VS Code Dark+ Theme Colors */
-  --vscode-bg: #1e1e1e;
-  --vscode-sidebar: #252526;
-  --vscode-activitybar: #333333;
-  --vscode-editor: #1e1e1e;
-  --vscode-tabs: #2d2d2d;
-  --vscode-tab-active: #1e1e1e;
-  --vscode-border: #3c3c3c;
-  --vscode-text: #cccccc;
-  --vscode-text-muted: #858585;
-  --vscode-accent: #007acc;
-  --vscode-accent-hover: #1a8fd1;
-  --vscode-green: #4ec9b0;
-  --vscode-yellow: #dcdcaa;
-  --vscode-orange: #ce9178;
-  --vscode-blue: #569cd6;
-  --vscode-purple: #c586c0;
-  --vscode-red: #f14c4c;
+  --bg-color: #0B0D0E;
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border-color: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --surface-default: #0B0D0E;
+  --surface-raised: #111315;
+  --surface-overlay: #1A1C1E;
+  --accent-color: #a78bfa;
+  --accent-color-glow: rgba(139, 92, 246, 0.07);
+  --selection-bg: white;
+  --selection-text: black;
+  --scrollbar-track: #0B0D0E;
+  --scrollbar-thumb: rgba(113, 113, 122, 0.25);
+  --scrollbar-thumb-hover: rgba(113, 113, 122, 0.45);
+  --glow-1: rgba(139, 92, 246, 0.07);
+  --glow-2: rgba(225, 29, 72, 0.04);
+  --glow-3: rgba(217, 119, 6, 0.03);
+  --grid-dots: rgba(255, 255, 255, 0.02);
+  --nav-bg: rgba(11, 13, 14, 0.4);
+  --nav-highlight: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  
+  /* GitHub Graph Colors */
+  --contrib-0: rgba(255, 255, 255, 0.04);
+  --contrib-1: rgba(255, 255, 255, 0.25);
+  --contrib-2: rgba(255, 255, 255, 0.45);
+  --contrib-3: rgba(255, 255, 255, 0.65);
+  --contrib-4: rgba(255, 255, 255, 0.9);
+
+  /* LinkedIn custom theme variables */
+  --linkedin-bg: rgba(0, 119, 181, 0.08);
+  --linkedin-border: rgba(0, 119, 181, 0.2);
+  --linkedin-border-hover: rgba(0, 119, 181, 0.4);
+  --linkedin-text: #0077B5;
+  --linkedin-text-muted: rgba(0, 119, 181, 0.7);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.tsushima-theme {
+  --bg-color: #070102;
+  --text-primary: #f8f8f2;
+  --text-secondary: #ff4a4a;
+  --text-muted: #7e7677;
+  --border-color: rgba(255, 74, 74, 0.15);
+  --border-hover: #ff4a4a;
+  --surface-default: #070102;
+  --surface-raised: #120306;
+  --surface-overlay: #1a060a;
+  --accent-color: #ff4a4a;
+  --accent-color-glow: rgba(255, 74, 74, 0.08);
+  --selection-bg: #ff4a4a;
+  --selection-text: #070102;
+  --scrollbar-track: #070102;
+  --scrollbar-thumb: #7e7677;
+  --scrollbar-thumb-hover: #ff4a4a;
+  
+  --glow-1: rgba(255, 74, 74, 0.08);
+  --glow-2: rgba(255, 255, 255, 0.02);
+  --glow-3: rgba(255, 74, 74, 0.02);
+  --grid-dots: rgba(255, 74, 74, 0.08);
+  
+  --nav-bg: rgba(7, 1, 2, 0.85);
+  --nav-highlight: rgba(255, 74, 74, 0.12);
+  --card-bg: rgba(255, 74, 74, 0.03);
+  
+  /* GitHub Graph Crimson Palette */
+  --contrib-0: #120306;
+  --contrib-1: rgba(255, 74, 74, 0.25);
+  --contrib-2: rgba(255, 74, 74, 0.5);
+  --contrib-3: rgba(255, 74, 74, 0.75);
+  --contrib-4: #ff4a4a;
+
+  /* LinkedIn custom theme variables */
+  --linkedin-bg: rgba(255, 74, 74, 0.03);
+  --linkedin-border: rgba(255, 74, 74, 0.15);
+  --linkedin-border-hover: #ff4a4a;
+  --linkedin-text: #ff4a4a;
+  --linkedin-text-muted: #7e7677;
 }
 
-html {
-  scroll-behavior: smooth;
+.lofi-theme {
+  --bg-color: #0e0b09;
+  --text-primary: #f5eedc;
+  --text-secondary: #dca060;
+  --text-muted: #786b5d;
+  --border-color: rgba(220, 160, 96, 0.15);
+  --border-hover: #dca060;
+  --surface-default: #0e0b09;
+  --surface-raised: #17120e;
+  --surface-overlay: #201914;
+  --accent-color: #dca060;
+  --accent-color-glow: rgba(220, 160, 96, 0.08);
+  --selection-bg: #dca060;
+  --selection-text: #0e0b09;
+  --scrollbar-track: #0e0b09;
+  --scrollbar-thumb: #786b5d;
+  --scrollbar-thumb-hover: #dca060;
+  
+  --glow-1: rgba(220, 160, 96, 0.06);
+  --glow-2: rgba(245, 238, 220, 0.02);
+  --glow-3: rgba(220, 160, 96, 0.02);
+  --grid-dots: rgba(220, 160, 96, 0.08);
+  
+  --nav-bg: rgba(14, 11, 9, 0.85);
+  --nav-highlight: rgba(220, 160, 96, 0.12);
+  --card-bg: rgba(220, 160, 96, 0.03);
+  
+  /* GitHub Graph Amber Palette */
+  --contrib-0: #17120e;
+  --contrib-1: rgba(220, 160, 96, 0.25);
+  --contrib-2: rgba(220, 160, 96, 0.5);
+  --contrib-3: rgba(220, 160, 96, 0.75);
+  --contrib-4: #dca060;
+
+  /* LinkedIn custom theme variables */
+  --linkedin-bg: rgba(220, 160, 96, 0.03);
+  --linkedin-border: rgba(220, 160, 96, 0.15);
+  --linkedin-border-hover: #dca060;
+  --linkedin-text: #dca060;
+  --linkedin-text-muted: #786b5d;
 }
+
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--vscode-bg);
-  color: var(--vscode-text);
+  font-family: 'Space Mono', 'Inter', ui-monospace, monospace;
+  background: var(--bg-color);
+  color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  zoom: 1.1;
 }
 
-/* Code font */
-.font-mono {
-  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+/* ═══════ Font Utilities ═══════ */
+.font-pixel       { font-family: 'GeistPixelSquare', monospace; }
+.font-pixel-grid  { font-family: 'GeistPixelGrid', monospace; }
+.font-pixel-circle{ font-family: 'GeistPixelCircle', monospace; }
+.font-pixel-tri   { font-family: 'GeistPixelTriangle', monospace; }
+.font-pixel-line  { font-family: 'GeistPixelLine', monospace; }
+.font-mono-clean  { font-family: 'Space Mono', ui-monospace, monospace; }
+
+/* ═══════ Scrollbar ═══════ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); }
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ═══════ Selection ═══════ */
+::selection { background: var(--selection-bg); color: var(--selection-text); }
+
+/* ═══════ Focus ═══════ */
+*:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
-/* VS Code scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+a { text-decoration: none; color: inherit; }
+
+/* ═══════ Animations ═══════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--vscode-editor);
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
+.animate-blink { animation: blink 1.2s step-end infinite; }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(121, 121, 121, 0.4);
-  border-radius: 0;
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(20deg); }
+  40% { transform: rotate(-15deg); }
+  60% { transform: rotate(15deg); }
+  80% { transform: rotate(-10deg); }
 }
+.animate-wave { animation: wave 1.5s ease-in-out 1; }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(121, 121, 121, 0.6);
-}
-
-/* Selection */
-::selection {
-  background: rgba(0, 122, 204, 0.5);
-}
-
-/* Syntax highlighting colors */
-.syntax-keyword {
-  color: var(--vscode-keyword);
-}
-
-.syntax-function {
-  color: var(--vscode-function);
-}
-
-.syntax-string {
-  color: var(--vscode-string);
-}
-
-.syntax-type {
-  color: var(--vscode-type);
-}
-
-.syntax-variable {
-  color: var(--vscode-variable);
-}
-
-.syntax-comment {
-  color: var(--vscode-comment);
-  font-style: italic;
-}
-
-.syntax-number {
-  color: var(--vscode-number);
-}
-
-/* Activity bar icon */
-.activity-icon {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--vscode-text-muted);
-  cursor: pointer;
+/* ═══════ Corner Brackets ═══════ */
+.corner-brackets {
   position: relative;
-  transition: color 0.2s;
+  padding: 2px;
 }
-
-.activity-icon:hover,
-.activity-icon.active {
-  color: var(--vscode-text);
-}
-
-.activity-icon.active::before {
+.corner-brackets::before,
+.corner-brackets::after {
   content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--vscode-text);
+  width: 8px;
+  height: 8px;
+  border-color: var(--border-color);
+  pointer-events: none;
+  transition: border-color 0.3s;
+}
+.corner-brackets::before {
+  top: 0; left: 0;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+  border-color: inherit;
+}
+.corner-brackets::after {
+  bottom: 0; right: 0;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+  border-color: inherit;
+}
+.corner-brackets:hover::before,
+.corner-brackets:hover::after {
+  border-color: var(--border-hover);
 }
 
-/* Tab styling */
-.tab {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: var(--vscode-tabs);
-  border-right: 1px solid var(--vscode-border);
-  cursor: pointer;
-  font-size: 13px;
-  color: var(--vscode-text-muted);
-  transition: background 0.1s;
+/* ═══════ Glow effect ═══════ */
+.glow-top {
+  position: relative;
+}
+.glow-top::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, var(--glow-1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
 
-.tab:hover {
-  background: var(--vscode-tab-active);
-}
-
-.tab.active {
-  background: var(--vscode-tab-active);
-  color: var(--vscode-text);
-  border-top: 1px solid var(--vscode-accent);
-}
-
-/* Line numbers */
-.line-number {
-  color: var(--vscode-text-muted);
-  user-select: none;
-  text-align: right;
-  padding-right: 16px;
-  min-width: 50px;
-}
-
-/* Status bar */
-.status-bar {
-  background: var(--vscode-accent);
-  color: white;
-  font-size: 12px;
-  padding: 2px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ============================================
-   SHAKE ANIMATION - Easter Egg
-   ============================================ */
-
-@keyframes shake {
-
-  0%,
-  100% {
-    transform: translateX(0) rotate(0);
-  }
-
-  10% {
-    transform: translateX(-10px) rotate(-2deg);
-  }
-
-  20% {
-    transform: translateX(10px) rotate(2deg);
-  }
-
-  30% {
-    transform: translateX(-10px) rotate(-2deg);
-  }
-
-  40% {
-    transform: translateX(10px) rotate(2deg);
-  }
-
-  50% {
-    transform: translateX(-8px) rotate(-1deg);
-  }
-
-  60% {
-    transform: translateX(8px) rotate(1deg);
-  }
-
-  70% {
-    transform: translateX(-5px) rotate(-1deg);
-  }
-
-  80% {
-    transform: translateX(5px) rotate(1deg);
-  }
-
-  90% {
-    transform: translateX(-2px) rotate(0);
-  }
-}
-
-.animate-shake {
-  animation: shake 0.5s ease-in-out;
-}
-
-/* Modal backdrop */
-.backdrop-blur-sm {
-  backdrop-filter: blur(4px);
+/* ═══════ Mobile ═══════ */
+@media (max-width: 767px) {
+  button, a { min-height: 44px; }
 }
