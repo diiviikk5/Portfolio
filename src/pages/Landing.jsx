@@ -106,7 +106,7 @@ const BackgroundGlow = ({ theme }) => {
       {darkThemeGifs.map((gif, index) => (
         <div 
           key={gif}
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000" 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 hidden md:block" 
           style={{ 
             backgroundImage: `url(${gif})`,
             opacity: theme === 'dark' && darkGifIndex === index ? 0.22 : 0,
@@ -117,7 +117,7 @@ const BackgroundGlow = ({ theme }) => {
 
       {/* Samurai theme GIF */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000" 
+        className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 hidden md:block" 
         style={{ 
           backgroundImage: `url(/manga_otaku.gif)`,
           opacity: theme === 'tsushima' ? 0.28 : 0,
@@ -127,7 +127,7 @@ const BackgroundGlow = ({ theme }) => {
 
       {/* Lo-Fi theme GIF */}
       <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000" 
+        className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 hidden md:block" 
         style={{ 
           backgroundImage: `url(/oreki_houtarou.gif)`,
           opacity: theme === 'lofi' ? 0.28 : 0,
@@ -136,7 +136,7 @@ const BackgroundGlow = ({ theme }) => {
       />
 
       {/* Deep dark gradient overlay to ensure text visibility and legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-color)]/70 via-[var(--bg-color)]/85 to-[var(--bg-color)] transition-all duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-color)]/70 via-[var(--bg-color)]/85 to-[var(--bg-color)] transition-all duration-500 hidden md:block" />
       
       {/* Glow Circles */}
       <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[var(--glow-1)] rounded-full blur-[120px] opacity-60" />
