@@ -92,47 +92,32 @@ const BackgroundGlow = ({ theme }) => {
   const [darkGifIndex, setDarkGifIndex] = useState(0);
 
   useEffect(() => {
-    if (theme !== 'dark') return;
     const interval = setInterval(() => {
       setDarkGifIndex((prev) => (prev + 1) % darkThemeGifs.length);
     }, 4000); // Cycle every 4 seconds
     return () => clearInterval(interval);
-  }, [theme]);
+  }, []);
+
+  const getOpacity = () => {
+    if (theme === 'dark') return 0.22;
+    if (theme === 'tsushima' || theme === 'lofi') return 0.28;
+    return 0;
+  };
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-      {/* Dark theme looping GIFs */}
+      {/* Looping background GIFs for all themes */}
       {darkThemeGifs.map((gif, index) => (
         <div 
           key={gif}
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-700 hidden md:block" 
           style={{ 
             backgroundImage: `url(${gif})`,
-            opacity: theme === 'dark' && darkGifIndex === index ? 0.22 : 0,
+            opacity: darkGifIndex === index ? getOpacity() : 0,
             imageRendering: 'pixelated'
           }} 
         />
       ))}
-
-      {/* Samurai theme GIF */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 hidden md:block" 
-        style={{ 
-          backgroundImage: `url(/manga_otaku.gif)`,
-          opacity: theme === 'tsushima' ? 0.28 : 0,
-          imageRendering: 'pixelated'
-        }} 
-      />
-
-      {/* Lo-Fi theme GIF */}
-      <div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 hidden md:block" 
-        style={{ 
-          backgroundImage: `url(/oreki_houtarou.gif)`,
-          opacity: theme === 'lofi' ? 0.28 : 0,
-          imageRendering: 'pixelated'
-        }} 
-      />
 
       {/* Deep dark gradient overlay to ensure text visibility and legibility */}
       <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-color)]/70 via-[var(--bg-color)]/85 to-[var(--bg-color)] transition-all duration-500 hidden md:block" />
