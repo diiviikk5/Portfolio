@@ -82,18 +82,30 @@ const themeLabels = {
   lofi: 'Lo-Fi',
 };
 
-const darkThemeGifs = [
-  '/oreki_houtarou.gif',
-  '/time_weekend_first_frame.png',
-  '/oreki_houtarou_1.gif',
-];
+const themeGifsList = {
+  dark: [
+    '/oreki_houtarou.gif',
+    '/time_weekend_first_frame.png',
+    '/oreki_houtarou_1.gif',
+  ],
+  tsushima: [
+    '/zamurai_1.gif',
+    '/zamurai_2.gif',
+    '/zamurai_3.gif',
+  ],
+  lofi: [
+    '/oreki_houtarou.gif',
+    '/manga_otaku.gif',
+    '/forum_describe.gif',
+  ],
+};
 
 const BackgroundGlow = ({ theme }) => {
-  const [darkGifIndex, setDarkGifIndex] = useState(0);
+  const [gifIndex, setGifIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setDarkGifIndex((prev) => (prev + 1) % darkThemeGifs.length);
+      setGifIndex((prev) => (prev + 1) % 3);
     }, 4000); // Cycle every 4 seconds
     return () => clearInterval(interval);
   }, []);
@@ -104,16 +116,18 @@ const BackgroundGlow = ({ theme }) => {
     return 0;
   };
 
+  const activeGifs = themeGifsList[theme] || themeGifsList['dark'];
+
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
-      {/* Looping background GIFs for all themes */}
-      {darkThemeGifs.map((gif, index) => (
+      {/* Looping background GIFs for the active theme */}
+      {activeGifs.map((gif, index) => (
         <div 
           key={gif}
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-700 hidden md:block" 
           style={{ 
             backgroundImage: `url(${gif})`,
-            opacity: darkGifIndex === index ? getOpacity() : 0,
+            opacity: gifIndex === index ? getOpacity() : 0,
             imageRendering: 'pixelated'
           }} 
         />
