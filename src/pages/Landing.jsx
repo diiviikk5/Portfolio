@@ -89,9 +89,9 @@ const themeGifsList = {
     '/oreki_houtarou_1.gif',
   ],
   tsushima: [
-    '/zamurai_1.gif',
+    '/zamurai_4.gif',
     '/zamurai_2.gif',
-    '/zamurai_3.gif',
+    '/zamurai_5.gif',
   ],
   lofi: [
     '/oreki_houtarou.gif',
