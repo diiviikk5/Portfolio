@@ -3,8 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import {
   Github, Linkedin, Twitter, Mail,
   Code2, Terminal, ArrowUpRight, FileText,
-  Sparkles, ChevronRight, Layers, Home, User, BookOpen,
-  Gamepad2
+  ChevronRight, Layers, Fingerprint, Cpu, Newspaper, Joystick
 } from 'lucide-react';
 
 import swasthyaImg from '@/assets/swasthya-hero.png';
@@ -96,7 +95,7 @@ const BackgroundGlow = ({ theme }) => {
     if (theme !== 'dark') return;
     const interval = setInterval(() => {
       setDarkGifIndex((prev) => (prev + 1) % darkThemeGifs.length);
-    }, 10000); // Cycle every 10 seconds
+    }, 4000); // Cycle every 4 seconds
     return () => clearInterval(interval);
   }, [theme]);
 
@@ -106,7 +105,7 @@ const BackgroundGlow = ({ theme }) => {
       {darkThemeGifs.map((gif, index) => (
         <div 
           key={gif}
-          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 hidden md:block" 
+          className="absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-700 hidden md:block" 
           style={{ 
             backgroundImage: `url(${gif})`,
             opacity: theme === 'dark' && darkGifIndex === index ? 0.22 : 0,
@@ -150,10 +149,10 @@ const BackgroundGlow = ({ theme }) => {
 // ─── Navbar ──────────────────────────────────────────────────────────────────
 
 const navLinksItems = [
-  { name: 'Home', path: '#hero', icon: Home },
-  { name: 'About', path: '#about', icon: User },
-  { name: 'Work', path: '#work', icon: Code2 },
-  { name: 'Blog', path: '#blog', icon: BookOpen },
+  { name: 'Home', path: '#hero', icon: Terminal },
+  { name: 'About', path: '#about', icon: Fingerprint },
+  { name: 'Work', path: '#work', icon: Cpu },
+  { name: 'Blog', path: '#blog', icon: Newspaper },
 ];
 
 const Navbar = ({ theme, setTheme }) => {
@@ -228,7 +227,7 @@ const Navbar = ({ theme, setTheme }) => {
           rel="noreferrer"
           className="relative flex flex-col items-center gap-0.5 rounded-full px-3.5 py-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors duration-200 md:flex-row md:gap-2 md:px-5 md:py-2 shrink-0"
         >
-          <Sparkles className="h-[18px] w-[18px]" strokeWidth={1.5} />
+          <FileText className="h-[18px] w-[18px]" strokeWidth={1.5} />
           <span className="text-[9px] font-medium tracking-wide md:text-[11px] font-mono">
             Resume
           </span>
@@ -242,7 +241,7 @@ const Navbar = ({ theme, setTheme }) => {
             className="relative flex flex-col items-center gap-0.5 rounded-full px-3.5 py-1.5 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors duration-200 md:flex-row md:gap-2 md:px-5 md:py-2 shrink-0 cursor-pointer"
             title="Select theme"
           >
-            <Gamepad2 className="h-[18px] w-[18px]" strokeWidth={1.5} />
+            <Joystick className="h-[18px] w-[18px]" strokeWidth={1.5} />
             <span className="text-[9px] font-medium tracking-wide md:text-[11px] font-mono">
               {themeLabels[theme]}
             </span>
