@@ -6,9 +6,7 @@ import {
   ChevronRight, Layers, Fingerprint, Cpu, Newspaper, Joystick
 } from 'lucide-react';
 
-import swasthyaImg from '@/assets/swasthya-hero.png';
-import stellarImg from '@/assets/stellar-hero.png';
-import gladiatorImg from '@/assets/gladiator-hero.png';
+
 
 import GitHubGraph from '@/components/GitHubGraph';
 import ProgressiveBlur from '@/components/ProgressiveBlur';
@@ -26,9 +24,11 @@ const links = {
 
 const projects = [
   { title: 'Drift', description: 'Windows Alternative to Screen Studio with cinematic cursor tracking and smooth zooms.', tech: ['Rust', 'Tauri', 'React'], video: '/drift-showcase-1777051239342.mp4', link: 'https://github.com/diiviikk5/drift', github: 'https://github.com/diiviikk5/drift' },
-  { title: 'Swasthya', description: 'Holistic wellness platform with an integrated AI symptom checker.', tech: ['React', 'Node.js', 'MongoDB'], image: swasthyaImg, link: 'https://swasthya-gold.vercel.app/', github: 'https://github.com/diiviikk5/swasthya' },
-  { title: 'Stellar', description: 'GNSS satellite forecasting console powered by ML predictions.', tech: ['React', 'Three.js', 'Python'], image: stellarImg, link: 'https://stellar-wine.vercel.app/', github: 'https://github.com/diiviikk5/stellar' },
-  { title: 'Gladiator', description: 'Gamified algorithm learning through interactive PvP sessions.', tech: ['React', 'WebSocket', 'Node.js'], image: gladiatorImg, link: 'https://gladiator-smoky.vercel.app/', github: 'https://github.com/diiviikk5/gladiator' },
+  { title: 'Xeus', description: 'A playground for Solana agents but different, faster, and easier. Making the ecosystem of AI x Solana more useful and effective using the Agent Kit and Solana.new MCP.', tech: ['TypeScript', 'Solana', 'Agent Kit', 'MCP'], video: '/xeuz_demo.mp4', link: 'https://github.com/diiviikk5/Xeus', github: 'https://github.com/diiviikk5/Xeus' },
+  { title: 'Stellar v1k', description: 'GNSS satellite forecasting console powered by ML predictions.', tech: ['React', 'Three.js', 'Python'], video: '/ztellar_v1k.mp4', link: 'https://stellar-wine.vercel.app/', github: 'https://github.com/diiviikk5/stellar' },
+  { title: 'OpenLVM', description: 'Advanced agent testing platform.', tech: ['TypeScript', 'React', 'Node.js'], video: '/openlvm_demo.mp4', link: 'https://github.com/diiviikk5/OpenLVM', github: 'https://github.com/diiviikk5/OpenLVM' },
+  { title: 'Gladiator', description: 'Gamified algorithm learning through interactive PvP sessions.', tech: ['React', 'WebSocket', 'Node.js'], video: '/gladiator_demo.mp4', link: 'https://gladiator-smoky.vercel.app/', github: 'https://github.com/diiviikk5/gladiator' },
+  { title: 'Swasthya', description: 'Holistic wellness platform with an integrated AI symptom checker.', tech: ['React', 'Node.js', 'MongoDB'], video: '/zwazthya_arogyam_demo.mp4', link: 'https://swasthya-gold.vercel.app/', github: 'https://github.com/diiviikk5/swasthya' },
 ];
 
 const technologies = [
@@ -461,11 +461,11 @@ const BentoSection = () => (
 const ProjectsSection = () => (
   <AnimatedSection className="pb-20" id="work">
     <SectionLabel label="projects" right="featured" />
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div className="flex flex-col gap-6">
       {projects.map((project, i) => (
         <motion.div key={i} whileHover={{ y: -3 }} transition={{ duration: 0.25 }}
           className="group rounded-2xl bg-[var(--card-bg)] border border-[var(--border-color)] overflow-hidden hover:border-[var(--border-hover)] transition-colors">
-          <a href={project.link || project.github} target="_blank" rel="noreferrer" className="block relative h-44 md:h-48 overflow-hidden bg-[var(--surface-overlay)]">
+          <a href={project.link || project.github} target="_blank" rel="noreferrer" className="block relative h-60 md:h-96 overflow-hidden bg-[var(--surface-overlay)]">
             <ProgressiveBlur direction="bottom" blurLayers={4} blurIntensity={0.5} className="absolute inset-0 z-10" />
             {project.video ? (
               <video src={project.video} autoPlay loop muted playsInline className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
@@ -473,15 +473,15 @@ const ProjectsSection = () => (
               <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
             )}
           </a>
-          <div className="p-4">
+          <div className="p-5">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-pixel text-sm md:text-base text-[var(--text-primary)] uppercase">{project.title}</h3>
+              <h3 className="font-pixel text-base text-[var(--text-primary)] uppercase">{project.title}</h3>
               <div className="flex gap-1">
                 {project.github && <a href={project.github} target="_blank" rel="noreferrer" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors p-1.5 rounded hover:bg-[var(--surface-overlay)]"><Github size={13} /></a>}
                 {project.link && <a href={project.link} target="_blank" rel="noreferrer" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors p-1.5 rounded hover:bg-[var(--surface-overlay)]"><ArrowUpRight size={13} /></a>}
               </div>
             </div>
-            <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed mb-3 line-clamp-2 font-mono">{project.description}</p>
+            <p className="text-[12px] text-[var(--text-secondary)] leading-relaxed mb-3 font-mono">{project.description}</p>
             <div className="flex gap-2 flex-wrap">
               {project.tech.map(t => <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-[var(--surface-overlay)] text-[var(--text-muted)] border border-[var(--border-color)] font-mono">{t}</span>)}
             </div>
