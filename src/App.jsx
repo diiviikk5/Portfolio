@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Minimal from './pages/Minimal'
+import Home from './pages/Home'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Minimal />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </BrowserRouter>
   )
