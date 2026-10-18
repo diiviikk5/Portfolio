@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, FileText, ArrowUpRight, ArrowRight, Star, Search, Play, Copy, Check, Contrast, Terminal, Fingerprint, Cpu, Clapperboard } from 'lucide-react';
+import ShaderBg from '@/components/ShaderBg';
 import '../iso.css';
 
 /* ─── content ───────────────────────────────────────────────────────────────── */
@@ -339,6 +340,7 @@ export default function Iso() {
 
   return (
     <div className="iso">
+      <ShaderBg mode={mode} />
       <Hatch />
       <Nav mode={mode} setMode={setMode} />
 
