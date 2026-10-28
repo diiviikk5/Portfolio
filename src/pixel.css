@@ -21,10 +21,6 @@ html[data-px] body { transition: background .35s, color .35s; }
 html[data-px] body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Geist Mono', ui-monospace, monospace; }
 
 .px { position: relative; min-height: 100vh; overflow-x: clip; -webkit-font-smoothing: antialiased; }
-/* a faint pixel grid, fading out below the hero */
-.px::before { content: ''; position: absolute; inset: 0 0 auto; height: 900px; pointer-events: none;
-  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 24px 24px; opacity: .55;
-  -webkit-mask-image: linear-gradient(#000 30%, transparent); mask-image: linear-gradient(#000 30%, transparent); }
 .px a { color: inherit; text-decoration: none; }
 .px button { font: inherit; color: inherit; }
 .px :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
