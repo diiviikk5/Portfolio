@@ -2,7 +2,6 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 're
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, FileText, Sun, Moon, ArrowUpRight, ArrowRight, Star, Search, Play, Copy, X, Send, GitCommitHorizontal } from 'lucide-react';
 import { loadPiixpal } from 'piixpal/load';
-import { registerDivik } from '@/lib/divikPal';
 import '../pixel.css';
 
 /* ─── content ───────────────────────────────────────────────────────────────── */
@@ -76,10 +75,10 @@ const ago = iso => {
   return `${Math.floor(d / 365)}y ago`;
 };
 
-/* Piixpal loads in the browser only; the custom Divik pal is registered once it's in */
+/* Piixpal loads in the browser only */
 function usePiixpal() {
   const [P, setP] = useState(null);
-  useEffect(() => { loadPiixpal().then(p => { registerDivik(p); setP(p); }); }, []);
+  useEffect(() => { loadPiixpal().then(setP); }, []);
   return P;
 }
 
@@ -334,7 +333,7 @@ export default function Pixel() {
           <Label n="01">About me</Label>
           <div className="about">
             <div className="about-text">
-              <h3 className="about-h">Hello there{P && <Piix pal="divik" box=".about-h" />}</h3>
+              <h3 className="about-h">Hello there</h3>
               <p>I'm <b>Divik</b>, a full-stack developer in my 5th semester. I like building in <b>AI</b>, on the web, and partially <b>Web3</b>. Right now that means <b>AI agents</b>, and I believe these days anything is possible with the tools we have at our disposal.</p>
               <p>I also made <a href={links.piixpal} target="_blank" rel="noreferrer">Piixpal</a>, so everything that moves on this page is mine too. Off the clock I play a lot of games, which is why half my side projects are launchers and trackers.</p>
               <div className="stack">{stack.map(s => <span key={s} className="chip chip--static">{s}</span>)}</div>
