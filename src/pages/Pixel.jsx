@@ -105,7 +105,7 @@ const Label = ({ n, children, right }) => (
 );
 
 function Nav({ onPlay, dark, onToggle }) {
-  const items = [['Work', '#work'], ['Activity', '#activity'], ['About', '#about'], ['Contact', '#contact']];
+  const items = [['About', '#about'], ['Work', '#work'], ['Activity', '#activity'], ['Contact', '#contact']];
   const [active, setActive] = useState('');
   useEffect(() => {
     const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setActive('#' + e.target.id)), { rootMargin: '-45% 0px -50% 0px' });
@@ -319,10 +319,6 @@ export default function Pixel() {
             {P && <Piix pal="bitbug" on="piix-type" />}
           </h1>
           <motion.p className="tagline" {...up(.15)}>I like to build things people actually use</motion.p>
-          <motion.p className="intro" {...up(.22)}>
-            Full-stack developer in my 5th semester, building <mark>AI agents</mark>, dev tools and the odd <mark>Web3</mark> app.
-            I also made <a href={links.piixpal} target="_blank" rel="noreferrer">Piixpal</a>, so everything that moves on this page is mine too.
-          </motion.p>
           <motion.div className="btns" {...up(.3)}>
             <a className="btn btn--ink" href="#work">See my work<ArrowRight size={13} /></a>
             <a className="btn" href={links.resume} target="_blank" rel="noreferrer"><FileText size={13} />Resume</a>
@@ -333,12 +329,30 @@ export default function Pixel() {
           {P && <Piix pal="bulb" at="0.96" length="110" />}
         </section>
 
+        {/* about */}
+        <motion.section id="about" {...reveal}>
+          <Label n="01">About me</Label>
+          <div className="about">
+            <div className="about-text">
+              <h3 className="about-h">Hello there{P && <Piix pal="divik" />}</h3>
+              <p>I'm <b>Divik</b>, a full-stack developer in my 5th semester. I like building in <b>AI</b>, on the web, and partially <b>Web3</b>. Right now that means <b>AI agents</b>, and I believe these days anything is possible with the tools we have at our disposal.</p>
+              <p>I also made <a href={links.piixpal} target="_blank" rel="noreferrer">Piixpal</a>, so everything that moves on this page is mine too. Off the clock I play a lot of games, which is why half my side projects are launchers and trackers.</p>
+              <div className="stack">{stack.map(s => <span key={s} className="chip chip--static">{s}</span>)}</div>
+            </div>
+            <div className="socials">
+              <a className="px-card soc soc-img" href={links.github} target="_blank" rel="noreferrer"><img src="/githubpfp.gif" alt="" /><span className="soc-cap"><Github size={13} />github</span></a>
+              <a className="px-card soc soc-img" href={links.twitter} target="_blank" rel="noreferrer"><img src="/xpfp.gif" alt="" /><span className="soc-cap"><Twitter size={13} />@divikkk1</span></a>
+              <a className="px-card soc" href={links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={20} strokeWidth={1.6} /><span>linkedin</span></a>
+              <a className="px-card soc" href={links.medium} target="_blank" rel="noreferrer"><b className="m-logo">M</b><span>medium</span></a>
+            </div>
+          </div>
+        </motion.section>
+
         {/* now */}
         <motion.section className="now" {...reveal}>
           <div className="px-card now-term">
             <span className="now-k"><i className="dot" />right now</span>
             <p>Building <b>OpenLVM</b> and shipping <b>Xeus</b>. Taking internships, collabs and interesting problems.</p>
-            {P && <Piix pal="termi" lines="git push origin main|building openlvm…|xeus: 3 agents online|✓ shipped" at="0.85" />}
           </div>
           <div className="px-card now-push">
             <span className="now-k"><GitCommitHorizontal size={13} />latest pushes</span>
@@ -354,35 +368,16 @@ export default function Pixel() {
 
         {/* selected work */}
         <section id="work">
-          <Label n="01" right="tap to watch">Selected work</Label>
+          <Label n="02" right="tap to watch">Selected work</Label>
           <div className="work-grid">{work.map((p, i) => <WorkCard key={p.name} p={p} onOpen={() => setOpen(i)} />)}</div>
           {P && <Piix pal="lurk" on=".work-grid .work:nth-child(2)" />}
         </section>
 
         {/* activity */}
         <motion.section id="activity" {...reveal}>
-          <Label n="02" right={gh.repos ? `${own.length} repos · ${stars} stars` : null}>Activity</Label>
+          <Label n="03" right={gh.repos ? `${own.length} repos · ${stars} stars` : null}>Activity</Label>
           <Contributions days={gh.days} />
           <Repos repos={gh.repos} />
-        </motion.section>
-
-        {/* about */}
-        <motion.section id="about" {...reveal}>
-          <Label n="03">About me</Label>
-          <div className="about">
-            <div className="about-text">
-              <h3 className="about-h">Hello there{P && <Piix pal="divik" />}</h3>
-              <p>My name is <b>Divik</b>. I like developing projects in <b>AI</b>, on the web, and partially <b>Web3</b>. I'm currently working on <b>AI agents</b>, and I believe these days anything is possible with the tools we have at our disposal.</p>
-              <p>Off the clock I play a lot of games, which is why half my side projects are launchers and trackers.</p>
-              <div className="stack">{stack.map(s => <span key={s} className="chip chip--static">{s}</span>)}</div>
-            </div>
-            <div className="socials">
-              <a className="px-card soc soc-img" href={links.github} target="_blank" rel="noreferrer"><img src="/githubpfp.gif" alt="" /><span className="soc-cap"><Github size={13} />github</span></a>
-              <a className="px-card soc soc-img" href={links.twitter} target="_blank" rel="noreferrer"><img src="/xpfp.gif" alt="" /><span className="soc-cap"><Twitter size={13} />@divikkk1</span></a>
-              <a className="px-card soc" href={links.linkedin} target="_blank" rel="noreferrer"><Linkedin size={20} strokeWidth={1.6} /><span>linkedin</span></a>
-              <a className="px-card soc" href={links.medium} target="_blank" rel="noreferrer"><b className="m-logo">M</b><span>medium</span></a>
-            </div>
-          </div>
         </motion.section>
 
         {/* contact */}
