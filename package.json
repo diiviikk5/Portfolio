@@ -26,6 +26,7 @@
     "gsap": "^3.13.0",
     "lucide-react": "^0.544.0",
     "particles.js": "^2.0.0",
+    "piixpal": "^0.4.0",
     "postprocessing": "^6.37.8",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
