@@ -54,7 +54,7 @@ html[data-px] body { margin: 0; background: var(--bg); color: var(--ink); font-f
 .hero { padding-top: 148px; }
 .hey { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 14px; color: var(--muted); }
 .hey-sprite { display: inline-block; }
-.name { position: relative; margin: 0; line-height: 0; }
+.name { position: relative; width: fit-content; max-width: 100%; margin: 0; line-height: 0; } /* hugs the letters, so bitbug's box does too */
 .name piix-type { display: block; max-width: 100%; }
 .name-fallback { display: block; font: 400 84px/1 'GeistPixel', monospace; }
 .hero .btns { margin-top: 34px; }

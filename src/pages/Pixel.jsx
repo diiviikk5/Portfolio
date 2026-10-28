@@ -316,7 +316,7 @@ export default function Pixel() {
           </motion.p>
           <h1 className="name" aria-label="Divik">
             {P ? <Piix tag="piix-type" text="DIVIK" rows="16" cell="9" color={dark ? '#f3efe6' : '#1d1b18'} shade={dark ? '#3a3631' : '#d9d4c9'} depth="2" gap="0.12" weight="800" /> : <span className="name-fallback">DIVIK</span>}
-            {P && <Piix pal="bitbug" on="piix-type" />}
+            {P && <Piix pal="bitbug" on="piix-type" box=".name" />}
           </h1>
           <motion.p className="tagline" {...up(.15)}>I like to build things people actually use</motion.p>
           <motion.div className="btns" {...up(.3)}>
@@ -334,7 +334,7 @@ export default function Pixel() {
           <Label n="01">About me</Label>
           <div className="about">
             <div className="about-text">
-              <h3 className="about-h">Hello there{P && <Piix pal="divik" />}</h3>
+              <h3 className="about-h">Hello there{P && <Piix pal="divik" box=".about-h" />}</h3>
               <p>I'm <b>Divik</b>, a full-stack developer in my 5th semester. I like building in <b>AI</b>, on the web, and partially <b>Web3</b>. Right now that means <b>AI agents</b>, and I believe these days anything is possible with the tools we have at our disposal.</p>
               <p>I also made <a href={links.piixpal} target="_blank" rel="noreferrer">Piixpal</a>, so everything that moves on this page is mine too. Off the clock I play a lot of games, which is why half my side projects are launchers and trackers.</p>
               <div className="stack">{stack.map(s => <span key={s} className="chip chip--static">{s}</span>)}</div>
