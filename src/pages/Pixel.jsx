@@ -17,7 +17,7 @@ const links = {
   email: 'divikstudy100@gmail.com',
   resume: '/dvkar_resume.pdf',
 };
-/* hand-written notes; every one is in the showcase, the ones with a video also open in the player */
+/* hand-written notes; the ones with a video are the showcase */
 const curated = [
   { name: 'Drift', desc: 'Windows alternative to Screen Studio with cinematic cursor tracking and smooth zooms.', tag: 'Rust · Tauri · React', video: '/drift-showcase-1777051239342.mp4', repo: 'drift', tint: 'lime' },
   { name: 'Xeus', desc: 'A playground for Solana agents: faster and easier, built on the Agent Kit and the Solana.new MCP.', tag: 'TS · Solana · MCP', video: '/xeuz_demo.mp4', repo: 'Xeus', tint: 'lilac' },
@@ -25,13 +25,13 @@ const curated = [
   { name: 'Stellar v1k', desc: 'GNSS satellite forecasting console powered by ML predictions.', tag: 'React · Three.js · Python', video: '/ztellar_v1k.mp4', repo: 'stellar', link: 'https://stellar-wine.vercel.app/', tint: 'sky' },
   { name: 'Gladiator', desc: 'Gamified algorithm learning through interactive PvP sessions.', tag: 'React · WebSocket', video: '/gladiator_demo.mp4', repo: 'gladiator', link: 'https://gladiator-smoky.vercel.app/', tint: 'lime' },
   { name: 'Swasthya', desc: 'Holistic wellness platform with an integrated AI symptom checker.', tag: 'React · Node · MongoDB', video: '/zwazthya_arogyam_demo.mp4', repo: 'swasthya', link: 'https://swasthya-gold.vercel.app/', tint: 'coral' },
-  { name: 'Piixpal', desc: 'Pixel characters that live on your website. The little guys on this page are all Piixpal.', tag: 'Web components', repo: 'piixpal', link: 'https://piixpal.dvkk.dev', sprite: 'gloop', tint: 'lime' },
-  { name: 'Nectar', desc: 'Turn content into agent skills.', tag: 'Agents', repo: 'Nectar', sprite: 'hops', tint: 'coral' },
-  { name: 'gloader', desc: 'A generic attempt towards a game launcher, building a better one.', tag: 'Desktop', repo: 'gloader', sprite: 'keycap', tint: 'sky' },
-  { name: 'dvkcli', desc: 'Personal pocket GPT (Qwen!).', tag: 'CLI · Qwen', repo: 'dvkcli', sprite: 'crt', tint: 'lilac' },
-  { name: 'NextPlayGames', desc: 'I love games, so a game tracker.', tag: 'Web', repo: 'Nextplay', sprite: 'astronaut', tint: 'lime' },
+  { name: 'Piixpal', desc: 'Pixel characters that live on your website. The little guys on this page are all Piixpal.', tag: 'Web components', repo: 'piixpal', link: 'https://piixpal.dvkk.dev' },
+  { name: 'Nectar', desc: 'Turn content into agent skills.', tag: 'Agents', repo: 'Nectar' },
+  { name: 'gloader', desc: 'A generic attempt towards a game launcher, building a better one.', tag: 'Desktop', repo: 'gloader' },
+  { name: 'dvkcli', desc: 'Personal pocket GPT (Qwen!).', tag: 'CLI · Qwen', repo: 'dvkcli' },
+  { name: 'NextPlayGames', desc: 'I love games, so a game tracker.', tag: 'Web', repo: 'Nextplay' },
 ];
-const work = curated.filter(c => c.video); // these open in the player
+const work = curated.filter(c => c.video);
 const byRepo = Object.fromEntries(curated.map(c => [c.repo.toLowerCase(), c]));
 const stack = ['Rust', 'Go', 'TypeScript', 'Python', 'C++', 'Solidity', 'Zig', 'React', 'Next.js', 'Node.js', 'Tauri', 'Three.js', 'Solana', 'MongoDB'];
 const LANG = { TypeScript: '#3178c6', JavaScript: '#e8c931', Python: '#3572a5', Rust: '#dea584', Go: '#00add8', 'C++': '#f34b7d', C: '#555555', Solidity: '#aa6746', HTML: '#e34c26', CSS: '#663399', Zig: '#ec915c', Shell: '#89e051', 'Jupyter Notebook': '#da5b0b', Java: '#b07219', Svelte: '#ff3e00', Vue: '#41b883' };
@@ -205,7 +205,9 @@ function Repos({ repos }) {
   }, [list]);
   const shown = useMemo(() => {
     const s = q.trim().toLowerCase();
-    return list.filter(r => (lang === 'All' || r.lang === lang) && (!s || `${r.name} ${r.desc || ''}`.toLowerCase().includes(s)));
+    // most starred first; the API already returns them newest-pushed first, and sort is stable, so ties keep that order
+    return list.filter(r => (lang === 'All' || r.lang === lang) && (!s || `${r.name} ${r.desc || ''}`.toLowerCase().includes(s)))
+      .sort((a, b) => (b.stars || 0) - (a.stars || 0));
   }, [list, lang, q]);
   const visible = all || q ? shown : shown.slice(0, 10);
 
@@ -295,8 +297,9 @@ export default function Pixel() {
             <button type="button" className="btn play-perch" onClick={play}><Play size={12} fill="currentColor" />Play this page</button>
           </motion.div>
           {P && gaming && <Piix elRef={pix} pal="pix" on=".play-perch" events={pixEvents} />}
-          {/* pull the chain for dark mode; it has to live inside the hero, not point at it with `on` */}
-          {P && <Piix pal="bulb" at="0.96" length="110" box=".hero" />}
+          {/* the only theme switch: pull the chain. It lives inside the hero (pointing at it with `on` breaks the
+              engine), and has no `box`, so it hangs from the top of the window and swings all the way round */}
+          {P && <Piix pal="bulb" at="0.92" length="100" />}
         </section>
 
         {/* about */}
@@ -306,7 +309,7 @@ export default function Pixel() {
             <div className="about-text">
               <h3 className="about-h">Hello there</h3>
               <p>I'm <b>Divik</b>, a full-stack developer in my 5th semester. I like building in <b>AI</b>, on the web, and partially <b>Web3</b>. Right now that means <b>AI agents</b>, and I believe these days anything is possible with the tools we have at our disposal.</p>
-              <p>I also made <a href={links.piixpal} target="_blank" rel="noreferrer">Piixpal</a>, so everything that moves on this page is mine too. Off the clock I play a lot of games, which is why half my side projects are launchers and trackers.</p>
+              <p>I also made <a href={links.piixpal} target="_blank" rel="noreferrer">Piixpal</a>, so everything that moves on this page is mine too.</p>
               <div className="stack">{stack.map(s => <span key={s} className="chip chip--static">{s}</span>)}</div>
             </div>
             <div className="socials">
@@ -325,8 +328,8 @@ export default function Pixel() {
 
         {/* selected work */}
         <section id="work">
-          <Label n="02" right={`${curated.length} projects`}>Projects</Label>
-          <Showcase projects={curated} ready={!!P} github={links.github} onWatch={p => setOpen(work.indexOf(p))} />
+          <Label n="02" right={`${work.length} demos`}>Projects</Label>
+          <Showcase projects={work} github={links.github} onWatch={p => setOpen(work.indexOf(p))} />
           {P && <Piix pal="lurk" on=".show-info" />}
         </section>
 

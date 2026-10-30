@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Github, Play } from 'lucide-react';
-import Piix from '@/lib/Piix';
 
-/* Every project on one stage. The active one sits centred and plays; its neighbours fan out
+/* Every project with a demo on one stage. The active one sits centred and plays; its neighbours fan out
    behind it on springs. Drag, swipe, arrow keys, click a neighbour, or let it play through. */
 
 const AUTOPLAY_MS = 7000;
@@ -30,7 +29,7 @@ function useCardWidth(ref) {
   return w;
 }
 
-function Card({ p, d, w, ready, onPick, onWatch, github }) {
+function Card({ p, d, w, onPick, onWatch }) {
   const video = useRef(null);
   const active = d === 0;
   const far = Math.abs(d);
@@ -53,16 +52,14 @@ function Card({ p, d, w, ready, onPick, onWatch, github }) {
         filter: active ? 'grayscale(0)' : 'grayscale(.6)',
       }}
       transition={spring}
-      onClick={() => (active ? (p.video ? onWatch(p) : window.open(p.link || `${github}/${p.repo}`, '_blank', 'noopener')) : onPick())}
+      onClick={() => (active ? onWatch(p) : onPick())}
       aria-hidden={!active}
     >
       <div className="show-media">
-        {p.video
-          ? <video ref={video} src={p.video} muted loop playsInline preload="metadata" />
-          : <div className="show-poster">{ready && <Piix tag="piix-sprite" name={p.sprite} size={Math.round(w * 0.34)} render="voxel" />}</div>}
+        <video ref={video} src={p.video} muted loop playsInline preload="metadata" />
         {active && (
           <motion.span className="show-hint" initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .35, duration: .4, ease }}>
-            {p.video ? <><Play size={12} fill="currentColor" />watch the demo</> : <>open on GitHub<ArrowUpRight size={12} /></>}
+            <Play size={12} fill="currentColor" />watch the demo
           </motion.span>
         )}
       </div>
@@ -81,7 +78,7 @@ const Letters = ({ text }) => (
   </span>
 );
 
-export default function Showcase({ projects, ready, onWatch, github }) {
+export default function Showcase({ projects, onWatch, github }) {
   const n = projects.length;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -116,7 +113,7 @@ export default function Showcase({ projects, ready, onWatch, github }) {
           else if (offset.x > 60 || velocity.x > 450) go(active - 1);
         }}>
         {projects.map((proj, i) => (
-          <Card key={proj.name} p={proj} d={ringOffset(i, active, n)} w={w} ready={ready} github={github} onPick={() => go(i)} onWatch={onWatch} />
+          <Card key={proj.name} p={proj} d={ringOffset(i, active, n)} w={w} onPick={() => go(i)} onWatch={onWatch} />
         ))}
       </motion.div>
 
@@ -129,7 +126,7 @@ export default function Showcase({ projects, ready, onWatch, github }) {
               <motion.div className="show-meta" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .28, duration: .4 }}>
                 {p.tag && <span className="dim">{p.tag}</span>}
                 <span className="show-btns">
-                  {p.video && <button type="button" className="btn btn--ink" onClick={() => onWatch(p)}><Play size={12} fill="currentColor" />Watch</button>}
+                  <button type="button" className="btn btn--ink" onClick={() => onWatch(p)}><Play size={12} fill="currentColor" />Watch</button>
                   <a className="btn" href={`${github}/${p.repo}`} target="_blank" rel="noreferrer"><Github size={13} />Source</a>
                   {p.link && <a className="btn" href={p.link} target="_blank" rel="noreferrer">Live<ArrowUpRight size={13} /></a>}
                 </span>
