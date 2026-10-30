@@ -106,7 +106,7 @@ export default function Showcase({ projects, onWatch, github }) {
   return (
     <div className="showcase" ref={root} tabIndex={0} onKeyDown={onKey} aria-roledescription="carousel" aria-label="Projects"
       onPointerEnter={() => setPaused(true)} onPointerLeave={() => setPaused(false)}>
-      <motion.div className="show-stage" ref={stage}
+      <motion.div className="show-stage" ref={stage} style={{ height: Math.round(w * 10 / 16) + 14 }}
         drag="x" dragConstraints={{ left: 0, right: 0 }} dragElastic={0.18} dragMomentum={false}
         onDragEnd={(e, { offset, velocity }) => {
           if (offset.x < -60 || velocity.x < -450) go(active + 1);

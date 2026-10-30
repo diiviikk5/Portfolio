@@ -266,6 +266,13 @@ export default function Pixel() {
   const copy = () => navigator.clipboard?.writeText(links.email).then(() => toast('Email copied!'), () => toast(links.email));
   // Pix only exists while you play: mount it, start it once it's ready, drop it when the game stops
   const [gaming, setGaming] = useState(false);
+  // on phones the bulb hangs short in the top corner, clear of the text
+  const [narrow, setNarrow] = useState(() => matchMedia('(max-width: 720px)').matches);
+  useEffect(() => {
+    const mq = matchMedia('(max-width: 720px)'), on = () => setNarrow(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
   const play = () => { if (gaming) pix.current?.poke?.(); else setGaming(true); };
   const pixEvents = useMemo(() => ({
     'piix:ready': e => e.currentTarget.poke?.(),
@@ -288,7 +295,7 @@ export default function Pixel() {
             Hey, I'm
           </motion.p>
           <h1 className="name" aria-label="Divik">
-            {P ? <Piix tag="piix-type" text="DIVIK" rows="16" cell="9" color={dark ? '#f3efe6' : '#1d1b18'} shade={dark ? '#3a3631' : '#d9d4c9'} depth="2" gap="0.12" weight="800" /> : <span className="name-fallback">DIVIK</span>}
+            {P ? <Piix tag="piix-type" text="DIVIK" rows="16" cell="9" color={dark ? '#f3efe6' : '#1d1b18'} shade={dark ? '#3a3631' : '#d9d4c9'} depth="2" gap="0.12" weight="800" fit /> : <span className="name-fallback">DIVIK</span>}
           </h1>
           <motion.p className="tagline" {...up(.15)}>I like to build things people actually use</motion.p>
           <motion.div className="btns" {...up(.3)}>
@@ -299,7 +306,7 @@ export default function Pixel() {
           {P && gaming && <Piix elRef={pix} pal="pix" on=".play-perch" events={pixEvents} />}
           {/* the only theme switch: pull the chain. It lives inside the hero (pointing at it with `on` breaks the
               engine), and has no `box`, so it hangs from the top of the window and swings all the way round */}
-          {P && <Piix pal="bulb" at="0.92" length="100" />}
+          {P && <Piix pal="bulb" at={narrow ? 1 : 0.92} length={narrow ? 34 : 100} />}
         </section>
 
         {/* about */}
